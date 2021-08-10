@@ -58,4 +58,6 @@ public class NoloFramework implements TcScreenObserver.IScreenListener {
 //    public static native String stringFromJNI();
 
     public static native void setScreenStatus(int status);
+
+    public static native void testdlOpen();
 }

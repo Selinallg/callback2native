@@ -10,13 +10,17 @@ android {
         applicationId "com.nolovr.core.base.ncb"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         externalNativeBuild {
             cmake {
                 cppFlags ''
             }
+        }
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"//, "mips"
         }
     }
 

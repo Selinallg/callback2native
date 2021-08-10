@@ -9,8 +9,8 @@
 /*
  * Method:   设备连接回调c#(unity)
  */
-typedef void (*ConnectedStatus)(int a);
-void (* Connected)(int a);
-int SetConnectedStatus(ConnectedStatus nfun);
+typedef void (*ScreenStatus)(int a);
+void (* Changed)(int a);
+int setScreenStatusFun(ScreenStatus nfun);
 
 #endif //CALLBACK2NATIVE_NATIVECALLBACK_H

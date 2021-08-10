@@ -26,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         // Example of a call to a native method
         TextView tv = binding.sampleText;
         tv.setText(stringFromJNI());
+
+        NoloFramework.getInstance(this).init();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NoloFramework.getInstance(this).release();
     }
 
     /**

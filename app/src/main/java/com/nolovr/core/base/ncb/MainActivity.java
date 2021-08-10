@@ -3,6 +3,8 @@ package com.nolovr.core.base.ncb;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.nolovr.core.base.ncb.databinding.ActivityMainBinding;
@@ -24,8 +26,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Example of a call to a native method
-        TextView tv = binding.sampleText;
-        tv.setText(stringFromJNI());
+        Button tv = binding.sampleButton;
+//        tv.setText(stringFromJNI());
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NoloFramework.testdlOpen();
+            }
+        });
 
         NoloFramework.getInstance(this).init();
     }

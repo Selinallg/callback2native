@@ -9,18 +9,19 @@ void dlopenExp() {
     LOGCB("---------dlopenExp start ---------------");
 
 
-    char* path = "/system/app/ncb/lib/arm64/libNoloVRClient.so";
+    std::string path = "/system/app/ncb/lib/arm64/libNoloVRClient.so";
+//    std::string path = "/system/lib64/libNoloVRClient.so";
     typedef void (*ConnectedStatus)(int a);
     typedef int(*SetConnectedStatus_)(ConnectedStatus nfun);
     void *runtime_handle = dlopen(
-//            "/system/app/ncb/base.apk/lib/arm64-v8a/libNoloVRClient.so",
-            path,
+            path.c_str(),
             RTLD_LAZY);
     if (runtime_handle == nullptr) {
-        LOGCB("---------dlopenExp runtime_handle== nullptr--------------- path = %s",path);
+        LOGCB("dlopen dlerror-> %s ", dlerror());
+        LOGCB("---------dlopenExp runtime_handle== nullptr--------------- path = %s",path.c_str());
         return;
     }
-    LOGCB("---------dlopenExp dlopen susess --------------- path = %s",path);
+    LOGCB("---------dlopenExp dlopen susess --------------- path = %s",path.c_str());
     SetConnectedStatus_ runtime = (SetConnectedStatus_) dlsym(runtime_handle, "SetConnectedStatus");
     if (runtime != nullptr) {
         LOGCB("---------dlopenExp runtime != nullptr---------------");

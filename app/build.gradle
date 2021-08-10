@@ -10,7 +10,7 @@ android {
         applicationId "com.nolovr.core.base.ncb"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
+        versionCode 9
         versionName "1.0"
 
         externalNativeBuild {
@@ -24,10 +24,38 @@ android {
         }
     }
 
+    // 签名配置
+    signingConfigs {
+        release {
+            try {
+                storeFile file("./keystore/noloKeyStore-system")
+                storePassword "nolovr"
+                keyAlias "nolo"
+                keyPassword "nolovr"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+
+        debug {
+            storeFile file("./keystore/noloKeyStore-system")
+            storePassword "nolovr"
+            keyAlias "nolo"
+            keyPassword "nolovr"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {

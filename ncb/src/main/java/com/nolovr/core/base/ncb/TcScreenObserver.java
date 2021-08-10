@@ -65,15 +65,15 @@ public class TcScreenObserver extends BroadcastReceiver {
             filter.addAction(Intent.ACTION_SCREEN_OFF);
             mContext.registerReceiver(this, filter);
 
-            if (isScreenOn(mContext)) {
-                if (mListener != null) {
-                    mListener.onScreenOn(mContext);
-                }
-            } else {
-                if (mListener != null) {
-                    mListener.onScreenOff(mContext);
-                }
-            }
+//            if (isScreenOn(mContext)) {
+//                if (mListener != null) {
+//                    mListener.onScreenOn(mContext);
+//                }
+//            } else {
+//                if (mListener != null) {
+//                    mListener.onScreenOff(mContext);
+//                }
+//            }
         } catch (Exception e) {
             if (DEBUG) {
                 Log.w(LOG_TAG, "start Exception", e);
@@ -112,12 +112,12 @@ public class TcScreenObserver extends BroadcastReceiver {
         String action = aIntent.getAction();
         if (Intent.ACTION_SCREEN_ON.equals(action)) {
             if (mListener != null) {
-                if (isFastOperationOn()) return;
+//                if (isFastOperationOn()) return;
                 mListener.onScreenOn(aContext);
             }
         } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
             if (mListener != null) {
-                if (isFastOperationOff()) return;
+//                if (isFastOperationOff()) return;
                 mListener.onScreenOff(aContext);
             }
         }
